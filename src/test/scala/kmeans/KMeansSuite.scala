@@ -71,6 +71,20 @@ class KMeansSuite extends FunSuite {
     checkParClassify(points, means, expected)
   }
 
+  def checkKMeans(points: GenSeq[Point], means: GenSeq[Point], eta: Double, expected: GenSeq[Point]): Unit = {
+    assert(kMeans(points, means, eta) == expected,
+      s"KMeans($points, means) should equal to $expected")
+  }
+
+  test("'kMeans' should work for 'points' == GenSeq((0, 0, 1), (0,0, -1), (0,1,0), (0,10,0)) and 'oldMeans' == GenSeq((0, -1, 0), (0, 2, 0)) and 'eta' == 12.25") {
+    val points = GenSeq(new Point(0, 0, 1), new Point(0,0, -1), new Point(0,1,0), new Point(0,10,0))
+    val oldMeans = GenSeq(new Point(0, -1, 0), new Point(0, 2, 0))
+    val eta = 12.25
+    val expected = GenSeq(new Point(0.0, 0.0, 0.0), new Point(0.0, 5.5, 0.0))
+
+    checkKMeans(points, oldMeans, eta, expected)
+  }
+
 }
 
 
