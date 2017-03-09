@@ -72,7 +72,7 @@ class KMeansSuite extends FunSuite {
   }
 
   def checkKMeans(points: GenSeq[Point], means: GenSeq[Point], eta: Double, expected: GenSeq[Point]): Unit = {
-    assert(kMeans(points, means, eta) == expected,
+    assert(kMeans(points, means, eta).map(_.toString) == expected.map(_.toString),
       s"KMeans($points, means) should equal to $expected")
   }
 

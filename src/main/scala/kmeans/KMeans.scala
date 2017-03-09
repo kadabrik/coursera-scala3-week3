@@ -78,7 +78,7 @@ class KMeans {
   final def kMeans(points: GenSeq[Point], means: GenSeq[Point], eta: Double): GenSeq[Point] = {
     val newMeans = update(classify(points, means), means)
 
-    if (converged(eta)(means, newMeans)) means
+    if (converged(eta)(means, newMeans)) newMeans
     else kMeans(points, newMeans, eta)
   }
 }
